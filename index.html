@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>    
+    <p>Seja Bem-Vindo, <strong id="myName"></strong></p>
+    <div id="date">
+        <h3>Feveireiro de 2024</h3>
+        <div id="days"></div>
+    </div>
+    
+    
+    <script>
+        var user = sessionStorage.getItem("user");
+        document.getElementById("myName").innerHTML = user;
+        
+    </script>
+    <script src="scripts.js"></script>
+</body>
+</html>

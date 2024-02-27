@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>    
     <p>Seja Bem-Vindo, <strong id="myName"></strong></p>
@@ -12,10 +13,27 @@
         <div id="days"></div>
     </div>
     
-    
+    <div class="checkin-table">
+    <button class="subtexto">06:00</button>
+    <div class="painel">
+        <p>Lorem ipsum sei la o que</p>
+    </div>
+    <button class="subtexto">07:00</button>
+    <div class="painel">
+        <p>Lorem ipsum sei la o que</p>
+    </div>
+    <button class="subtexto">08:00</button>
+    <div class="painel"> 
+        <span>Alunos: <button class="laele" id="btnReservar">Reservar</button><ul id="alunos-09"></ul></span>
+    </div>
+    <button class="subtexto">09:00</button>
+    <div class="painel">
+        <span>Alunos: <button class="laele" id="btnReservar">Reservar</button><ul id="alunos-09"></ul></span>
+    </div>
+</div>
+
     <script>
-        var user = sessionStorage.getItem("user");
-        document.getElementById("myName").innerHTML = user;
+        document.getElementById("myName").innerHTML = sessionStorage.getItem("user");
         
     </script>
     <script src="scripts.js"></script>

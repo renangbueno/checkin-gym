@@ -1,14 +1,27 @@
+body{
+  font-family: "IBM Plex Sans", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  background-color: white;
+  background-size: 100% 100%;
+  margin: 0;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  
+}
 .subtexto{
     background-color: #eee;
     color: #444;
     cursor: pointer;
     padding: 18px;
-    width: 45%;
+    margin: 0;
+    width: 600px;
     text-align: left;
     border: none;
     outline: none;
-    transition: 0.4s;
-    display: block;
+    transition: 0.4s; 
+    font-size: 100%;
 }
 
 .active, .subtexto:hover {
@@ -18,11 +31,10 @@
   }
 
 .painel {
-    width: 45%;
-    padding: 0 18px;
-    margin-top: 9px;
+    width: 600px;
+    padding: 18px;
+    margin-top: 3px;
     background-color: white;
-    
     display: none;
     overflow: hidden;
   }
@@ -37,5 +49,75 @@
 
 .checkin-table{
     display: grid;
+    width: 800px;
+    height: 30vh;
     place-items: center;
+    margin-top: 1%;
+    flex-grow: 1; /* Cresce na direção horizontal */
+    gap: 11%;
+    
+}
+
+p, h3{
+  text-align: center;
+}
+
+.container, .diaHoje, .naoHoje{
+  display: flex;
+  margin: 0 5px;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  padding: 0;
+  margin-bottom: 1%;
+}
+
+.diaHoje{
+  color: white;
+  border: 10px solid rgb(123, 68, 253);
+  border-radius: 100%;
+  background-color: rgb(123, 68, 253);
+  font-size: 150%;
+}
+
+.naoHoje{
+  color: black;
+
+}
+
+.textoAlunos{
+  margin-left: 2%;
+  
+}
+
+.containerGeral {
+  display: flex;
+  margin-top: 10%;
+  background-color: white;
+}
+
+.sidebar {
+  width: 15%;
+  height: 110vh;
+  background-color: rgba(226,24,24,1);
+  padding-top: 1%;
+  display: none;
+  color: black;
+  }
+
+header{
+  background-color: rgba(226,24,24,1);
+}
+
+.treinoDia{
+  font-family: "IBM Plex Sans", sans-serif;
+  width: 100%;
+  height: 100px;
+  margin: 0 0px 2px;
+  background-color: rgba(226,24,24,1);
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 100%;
+  font-weight: 500;
 }

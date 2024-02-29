@@ -1,5 +1,27 @@
 const date = new Date();
 const today = date.getDate();
+const tomorrow = new Date();
+tomorrow.setDate(tomorrow.getDate()+1);
+const yesterday = new Date();
+yesterday.setDate(yesterday.getDate()-1);
+const mesIndex = date.getMonth();
+const nomesDosMeses = [
+  "Janeiro", "Fevereiro", "Março", "Abril",
+  "Maio", "Junho", "Julho", "Agosto",
+  "Setembro", "Outubro", "Novembro", "Dezembro"
+];
+const nomeDoMes = nomesDosMeses[mesIndex];
+var numeroAleatorio = Math.floor(Math.random() * 6);
+const frases = [
+  "Frase motivacional 1", "Frase Motivacional 2", "Frase motivacional 3",
+  "Frase motivacional 4", "Frase motivacional 5", "Frase motivacional 6"
+];
+
+
+
+window.onload = function(){
+  $("#fraseDia").text(frases[numeroAleatorio]);
+};
 
 function getUser(){
     var localuser = document.getElementById("username").value;
@@ -12,32 +34,11 @@ function getUser(){
     }
 }
 
-function fazerReserva(event) {
-  var button = event.target;
-  var idLista = button.id.replace('btnReservar-', ''); // Extrai a parte do ID após o traço
-  var ul = document.getElementById('alunos-' + idLista);
-
-  var li = document.createElement('li');
-  li.textContent = 'Novo Aluno';
-  ul.appendChild(li);
-}
-
-document.getElementById("btnReservar").addEventListener("click", fazerReserva);
-
-var dayContainer = document.getElementById("days");
-for (let i = today-1;i<=today+1;i++){
-    var singleDay = document.createElement("div");
-    singleDay.className = "day";
-    singleDay.textContent = i;
-
-    if (i === today){
-        alert(today);
-        singleDay.className = "today";
-        singleDay.textContent = i;
-    }
-
-    dayContainer.appendChild(singleDay);
-}
+// ADICIONA O MÊS E OS DIAS
+document.getElementById('mes').innerHTML = nomeDoMes;
+document.getElementById('ontem').innerHTML = yesterday.getDate();
+document.getElementById('hoje').innerHTML = today;
+document.getElementById('amanha').innerHTML = tomorrow.getDate();
 
 var acc = document.getElementsByClassName("subtexto");
 var i;

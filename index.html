@@ -5,35 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Oswald&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 </head>
-<body>    
-    <p>Seja Bem-Vindo, <strong id="myName"></strong></p>
-    <div id="date">
-        <h3>Feveireiro de 2024</h3>
-        <div id="days"></div>
-    </div>
+<body>
+    <header style="margin-top: 0; position: fixed; top: 0; left: 0; right: 0; margin-bottom: 0; color: black;">
+        <p>Seja Bem-Vindo, <strong id="myName"></strong></p>
+        <div id="date">
+            <h3 id="mes">Feveireiro de 2024</h3>
+        </div>
+        <div id="dayContainer" class="container"><span class="naoHoje" id="ontem"></span><span class="diaHoje" id="hoje"></span><span class="naoHoje" id="amanha"></span></div>
+    </header>
     
-    <div class="checkin-table">
-    <button class="subtexto">06:00</button>
-    <div class="painel">
-        <p>Lorem ipsum sei la o que</p>
+    <div class="containerGeral">
+        <div class="sidebar">
+            <!-- Conteúdo da Sidebar 1 -->
+            <button class="treinoDia" onclick="alert('teste')">&#9989;</button>
+            <button class="treinoDia" onclick="alert('teste')">&#9889;</button>
+            <button class="treinoDia" onclick="alert('teste')">&#11088;</button>
+          </div>
+
+        <div class="checkin-table">
+            <button class="subtexto">06:00</button>
+            <div class="painel">
+                <span class="textoAlunos">Alunos: <button class="laele">Reservar</button><ul></ul></span>
+            </div>
+            <button class="subtexto">07:00</button>
+            <div class="painel">
+                <span class="textoAlunos">Alunos: <button class="laele">Reservar</button><ul></ul></span>
+            </div>
+            <button class="subtexto">08:00</button>
+            <div class="painel"> 
+                <span class="textoAlunos">Alunos: <button class="laele">Reservar</button><ul></ul></span>
+            </div>
+            <button class="subtexto">09:00</button>
+            <div class="painel">
+                <span class="textoAlunos">Alunos: <button class="laele">Reservar</button><ul></ul></span>
+            </div>
+            <button class="subtexto" id="hamburguer">10:00</button>
+        </div>
+        <div class="sidebar">
+            <!-- Conteúdo da Sidebar 1 -->
+            <h2 style="text-align: center; margin-top: 0;">Frase</h2>
+            <p id="fraseDia" style="text-align: center;"></p>
+          </div>
     </div>
-    <button class="subtexto">07:00</button>
-    <div class="painel">
-        <p>Lorem ipsum sei la o que</p>
-    </div>
-    <button class="subtexto">08:00</button>
-    <div class="painel"> 
-        <span>Alunos: <button class="laele" id="btnReservar">Reservar</button><ul id="alunos-09"></ul></span>
-    </div>
-    <button class="subtexto">09:00</button>
-    <div class="painel">
-        <span>Alunos: <button class="laele" id="btnReservar">Reservar</button><ul id="alunos-09"></ul></span>
-    </div>
-</div>
 
     <script>
         document.getElementById("myName").innerHTML = sessionStorage.getItem("user");
+        $(document).ready(function() {
+            $('.laele').click(function(){
+                var novoAluno = $(this).siblings('ul');
+                
+                if ($(this).text() === 'Reservar'){
+                    $(this).text('Cancelar');
+                    let reservaAluno = '<li>'+ $('#myName').text() + '</li>';
+                    novoAluno.append(reservaAluno);
+                    $('.laele').not(this).prop('disabled', true);
+
+                } else{
+                    novoAluno.find('li:last').remove();
+                    $(this).text('Reservar');
+                    $('.laele').not(this).prop('disabled', false);
+                }
+            });
+
+            $('#hamburguer').click(function(){
+                $('.sidebar').slideToggle('slow');
+            });
+
+        });
         
     </script>
     <script src="scripts.js"></script>

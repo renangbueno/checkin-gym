@@ -6,18 +6,27 @@
     <title>Document</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Oswald&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header style="margin-top: 0; position: fixed; top: 0; left: 0; right: 0; margin-bottom: 0; color: black;">
-        <p>Seja Bem-Vindo, <strong id="myName"></strong></p>
-        <div id="date">
-            <h3 id="mes">Feveireiro de 2024</h3>
+    <header>
+        <div class="topnav">
+        <a class="icon" onclick="$('.sidebar').slideToggle('slow');">
+            <i class="fa fa-bars"></i></a>
         </div>
-        <div id="dayContainer" class="container"><span class="naoHoje" id="ontem"></span><span class="diaHoje" id="hoje"></span><span class="naoHoje" id="amanha"></span></div>
-    </header>
+        <span style="padding-top: 1%; text-align: center; display: flex; justify-content: center;">Seja Bem-Vindo, <strong id="myName"></strong> </span>
+        <div id="date">
+          <h3 id="mes">Feveireiro de 2024</h3>
+        </div>
+        <div id="dayContainer" class="container">
+          <span class="naoHoje" id="ontem"></span>
+          <span class="diaHoje" id="hoje"></span>
+          <span class="naoHoje" id="amanha"></span>
+        </div>
+        </header>
     
     <div class="containerGeral">
         <div class="sidebar">
@@ -25,26 +34,25 @@
             <button class="treinoDia" onclick="alert('teste')">&#9989;</button>
             <button class="treinoDia" onclick="alert('teste')">&#9889;</button>
             <button class="treinoDia" onclick="alert('teste')">&#11088;</button>
-          </div>
+        </div>
 
         <div class="checkin-table">
             <button class="subtexto">06:00</button>
             <div class="painel">
-                <span class="textoAlunos">Alunos: <button class="laele">Reservar</button><ul></ul></span>
+                <span class="textoAlunos">Alunos: <button class="laele">Reservar</button><ul id="alunos6"></ul></span>
             </div>
             <button class="subtexto">07:00</button>
             <div class="painel">
-                <span class="textoAlunos">Alunos: <button class="laele">Reservar</button><ul></ul></span>
+                <span class="textoAlunos">Alunos: <button class="laele">Reservar</button><ul id="alunos7"></ul></span>
             </div>
             <button class="subtexto">08:00</button>
             <div class="painel"> 
-                <span class="textoAlunos">Alunos: <button class="laele">Reservar</button><ul></ul></span>
+                <span class="textoAlunos"><button class="laele">Reservar</button>Alunos: <ul id="alunos8"></ul></span>
             </div>
             <button class="subtexto">09:00</button>
             <div class="painel">
-                <span class="textoAlunos">Alunos: <button class="laele">Reservar</button><ul></ul></span>
+                <span class="textoAlunos">Alunos: <button class="laele">Reservar</button><ul id="alunos9"></ul></span>
             </div>
-            <button class="subtexto" id="hamburguer">10:00</button>
         </div>
         <div class="sidebar">
             <!-- Conteúdo da Sidebar 1 -->
@@ -56,25 +64,38 @@
     <script>
         document.getElementById("myName").innerHTML = sessionStorage.getItem("user");
         $(document).ready(function() {
+            
             $('.laele').click(function(){
                 var novoAluno = $(this).siblings('ul');
+                var ulId = novoAluno.attr('id');
+                localStorage.setItem('ulId', ulId);
                 
                 if ($(this).text() === 'Reservar'){
                     $(this).text('Cancelar');
+                    $(this).css('background-color', 'red');
                     let reservaAluno = '<li>'+ $('#myName').text() + '</li>';
                     novoAluno.append(reservaAluno);
+                    var ulContents = novoAluno.html();
+                    localStorage.setItem('ulContents', ulContents);
+                    console.log(ulContents);
                     $('.laele').not(this).prop('disabled', true);
 
                 } else{
+                    $(this).css('background-color', 'rgb(45, 45, 255)');
                     novoAluno.find('li:last').remove();
                     $(this).text('Reservar');
                     $('.laele').not(this).prop('disabled', false);
                 }
             });
+            var ulId = localStorage.getItem('ulId');
+            var ulContents = localStorage.getItem('ulContents');
+            $('#' + ulId).append(ulContents);
+            
 
             $('#hamburguer').click(function(){
                 $('.sidebar').slideToggle('slow');
             });
+          
 
         });
         
